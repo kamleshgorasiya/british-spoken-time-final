@@ -1,6 +1,6 @@
 package com.kamlesh.britishtime.service;
 
-import java.time.LocalTime;
+import com.kamlesh.britishtime.dtos.SpokenTimeResponse;
 
 /**
  * © 2025 Kamlesh Gorasiya
@@ -26,5 +26,5 @@ public interface TimeService {
      * @return the spoken form of the time in British English
      * @throws IllegalArgumentException if time is null
      */
-    String toSpokenTime(LocalTime time);
+    SpokenTimeResponse toSpokenTime(String time);
 }

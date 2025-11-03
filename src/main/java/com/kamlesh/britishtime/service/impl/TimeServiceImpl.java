@@ -1,9 +1,13 @@
 package com.kamlesh.britishtime.service.impl;
 
+import com.kamlesh.britishtime.dtos.SpokenTimeResponse;
+import com.kamlesh.britishtime.exception.InvalidTimeFormatException;
 import com.kamlesh.britishtime.service.TimeService;
 import com.kamlesh.britishtime.service.formatter.TimeSpokenFormatter;
+import com.kamlesh.britishtime.utility.TimeParser;
 import org.springframework.stereotype.Service;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 /**
  * © 2025 Kamlesh Gorasiya
@@ -27,10 +31,13 @@ public class TimeServiceImpl implements TimeService {
      * @return spoken time (e.g., "quarter past four")
      */
     @Override
-    public String toSpokenTime(LocalTime time) {
-        if (time == null) {
-            throw new IllegalArgumentException("Time cannot be null");
+    public SpokenTimeResponse toSpokenTime(String time) {
+        try {
+            LocalTime t = TimeParser.parse(time);
+            String spoken  = timeFormatter.format(t);
+            return new SpokenTimeResponse(time, spoken);
+        } catch (DateTimeParseException ex) {
+            throw new InvalidTimeFormatException("Invalid time format. Please use HH:mm (e.g., 09:30).");
         }
-        return timeFormatter.format(time);
     }
 }
