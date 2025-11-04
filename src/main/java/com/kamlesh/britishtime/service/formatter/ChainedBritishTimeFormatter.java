@@ -15,9 +15,10 @@ import java.util.Objects;
  * 3. O'Clock (exact hours)
  * 4. Quarter Past (15 minutes)
  * 5. Half Past (30 minutes)
- * 6. Quarter To (45 minutes)
- * 7. Minutes Past (1-30 minutes)
- * 8. Minutes To (31-59 minutes)
+ * 6. Thirty Plus (31-34 minutes)
+ * 7. Quarter To (45 minutes)
+ * 8. Minutes Past (1-30 minutes)
+ * 9. Minutes To (35-59 minutes)
  */
 public class ChainedBritishTimeFormatter implements TimeSpokenFormatter {
 
@@ -56,6 +57,7 @@ public class ChainedBritishTimeFormatter implements TimeSpokenFormatter {
         AbstractTimeFormatter oClock = new OClockFormatter();
         AbstractTimeFormatter quarterPast = new QuarterPastFormatter();
         AbstractTimeFormatter halfPast = new HalfPastFormatter();
+        AbstractTimeFormatter thirtyPlus = new ThirtyPlusFormatter();
         AbstractTimeFormatter quarterTo = new QuarterToFormatter();
         AbstractTimeFormatter minutesPast = new MinutesPastFormatter();
         AbstractTimeFormatter minutesTo = new MinutesToFormatter();
@@ -65,6 +67,7 @@ public class ChainedBritishTimeFormatter implements TimeSpokenFormatter {
                 .setNext(oClock)
                 .setNext(quarterPast)
                 .setNext(halfPast)
+                .setNext(thirtyPlus)
                 .setNext(quarterTo)
                 .setNext(minutesPast)
                 .setNext(minutesTo);

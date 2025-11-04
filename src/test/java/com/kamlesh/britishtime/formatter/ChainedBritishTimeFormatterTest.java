@@ -1,5 +1,6 @@
 package com.kamlesh.britishtime.formatter;
 
+import com.kamlesh.britishtime.service.TimeSpokenFormatter;
 import com.kamlesh.britishtime.service.formatter.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -81,6 +82,18 @@ class ChainedBritishTimeFormatterTest {
         "03:25, twenty five past three"
     })
     void testMinutesPast(String timeStr, String expected) {
+        LocalTime time = LocalTime.parse(timeStr);
+        assertEquals(expected, formatter.format(time));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "03:31, three thirty one",
+        "03:32, three thirty two",
+        "03:33, three thirty three",
+        "03:34, three thirty four"
+    })
+    void testThirtyPlus(String timeStr, String expected) {
         LocalTime time = LocalTime.parse(timeStr);
         assertEquals(expected, formatter.format(time));
     }

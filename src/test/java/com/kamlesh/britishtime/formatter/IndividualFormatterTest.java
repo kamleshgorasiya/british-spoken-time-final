@@ -1,6 +1,6 @@
 package com.kamlesh.britishtime.formatter;
 
-import com.kamlesh.britishtime.service.impl.*;
+import com.kamlesh.britishtime.service.formatter.*;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
@@ -16,7 +16,7 @@ class IndividualFormatterTest {
 
     @Test
     void testMidnightFormatter() {
-        MidnightFormatterImpl formatter = new MidnightFormatterImpl();
+        MidnightFormatter formatter = new MidnightFormatter();
         
         // Should handle midnight
         assertEquals(Optional.of("midnight"), formatter.tryFormat(LocalTime.of(0, 0)));
@@ -29,7 +29,7 @@ class IndividualFormatterTest {
 
     @Test
     void testNoonFormatter() {
-        NoonFormatterImpl formatter = new NoonFormatterImpl();
+        NoonFormatter formatter = new NoonFormatter();
         
         // Should handle noon
         assertEquals(Optional.of("noon"), formatter.tryFormat(LocalTime.of(12, 0)));
@@ -42,7 +42,7 @@ class IndividualFormatterTest {
 
     @Test
     void testOClockFormatter() {
-        OClockFormatterImpl formatter = new OClockFormatterImpl();
+        OClockFormatter formatter = new OClockFormatter();
         
         // Should handle exact hours
         assertEquals(Optional.of("three o'clock"), formatter.tryFormat(LocalTime.of(3, 0)));
@@ -56,7 +56,7 @@ class IndividualFormatterTest {
 
     @Test
     void testQuarterPastFormatter() {
-        QuarterPastFormatterImpl formatter = new QuarterPastFormatterImpl();
+        QuarterPastFormatter formatter = new QuarterPastFormatter();
         
         // Should handle 15 minutes
         assertEquals(Optional.of("quarter past three"), formatter.tryFormat(LocalTime.of(3, 15)));
@@ -70,7 +70,7 @@ class IndividualFormatterTest {
 
     @Test
     void testHalfPastFormatter() {
-        HalfPastFormatterImpl formatter = new HalfPastFormatterImpl();
+        HalfPastFormatter formatter = new HalfPastFormatter();
         
         // Should handle 30 minutes
         assertEquals(Optional.of("half past three"), formatter.tryFormat(LocalTime.of(3, 30)));
@@ -84,7 +84,7 @@ class IndividualFormatterTest {
 
     @Test
     void testQuarterToFormatter() {
-        QuarterToFormatterImpl formatter = new QuarterToFormatterImpl();
+        QuarterToFormatter formatter = new QuarterToFormatter();
         
         // Should handle 45 minutes
         assertEquals(Optional.of("quarter to four"), formatter.tryFormat(LocalTime.of(3, 45)));
@@ -98,7 +98,7 @@ class IndividualFormatterTest {
 
     @Test
     void testMinutesPastFormatter() {
-        MinutesPastFormatterImpl formatter = new MinutesPastFormatterImpl();
+        MinutesPastFormatter formatter = new MinutesPastFormatter();
         
         // Should handle 1-30 minutes (excluding 15 and 30)
         assertEquals(Optional.of("five past three"), formatter.tryFormat(LocalTime.of(3, 5)));
@@ -118,7 +118,7 @@ class IndividualFormatterTest {
 
     @Test
     void testThirtyPlusFormatter() {
-        ThirtyPlusFormatterImpl formatter = new ThirtyPlusFormatterImpl();
+        ThirtyPlusFormatter formatter = new ThirtyPlusFormatter();
         
         // Should handle 31-34 minutes (special case)
         assertEquals(Optional.of("three thirty one"), formatter.tryFormat(LocalTime.of(3, 31)));
@@ -134,7 +134,7 @@ class IndividualFormatterTest {
 
     @Test
     void testMinutesToFormatter() {
-        MinutesToFormatterImpl formatter = new MinutesToFormatterImpl();
+        MinutesToFormatter formatter = new MinutesToFormatter();
         
         // Should handle 35-59 minutes (excluding 45)
         assertEquals(Optional.of("twenty five to four"), formatter.tryFormat(LocalTime.of(3, 35)));

@@ -1,6 +1,6 @@
 package com.kamlesh.britishtime.config;
 
-import com.kamlesh.britishtime.service.impl.ChainedBritishTimeFormatterImpl;
+import com.kamlesh.britishtime.service.formatter.ChainedBritishTimeFormatter;
 import com.kamlesh.britishtime.service.TimeSpokenFormatter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +19,6 @@ public class FormatterConfiguration {
     @Bean
     public TimeSpokenFormatter timeSpokenFormatter() {
         // Use the new chained formatter with specialized formatters
-        return new ChainedBritishTimeFormatterImpl();
+        return new ChainedBritishTimeFormatter();
     }
 }

@@ -6,22 +6,19 @@ import java.time.LocalTime;
 import java.util.Optional;
 
 /**
- * Formatter for minutes to the next hour (e.g., "five to four", "twenty to five").
- * Handles minutes from 35-59 (excluding 45 which is handled by QuarterToFormatter).
+ * Formatter for 31-34 minutes (e.g., "three thirty one", "three thirty two").
+ * Special case that uses "hour + minute" format instead of "to" format.
  */
-public class MinutesToFormatter extends AbstractTimeFormatter {
+public class ThirtyPlusFormatter extends AbstractTimeFormatter {
 
     @Override
     public Optional<String> tryFormat(LocalTime time) {
         int minute = time.getMinute();
         
-        // Handle minutes 35-59, excluding 45
-        if (minute >= 35 && minute != 45) {
+        if (minute >= 31 && minute <= 34) {
             int hour12 = time.getHour() % 12;
-            int toMinutes = 60 - minute;
-            int nextHour = (hour12 + 1) % 12;
-            String minuteSpoken = minuteToSpoken(toMinutes);
-            return Optional.of(minuteSpoken + " to " + TimeWords.hourWord(nextHour));
+            String minuteSpoken = minuteToSpoken(minute);
+            return Optional.of(TimeWords.hourWord(hour12) + " " + minuteSpoken);
         }
         
         return Optional.empty();
