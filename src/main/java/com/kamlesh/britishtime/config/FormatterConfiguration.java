@@ -1,13 +1,14 @@
 package com.kamlesh.britishtime.config;
 
-import com.kamlesh.britishtime.service.formatter.TimeFormatterFactory;
-import com.kamlesh.britishtime.service.formatter.TimeSpokenFormatter;
+import com.kamlesh.britishtime.service.impl.ChainedBritishTimeFormatterImpl;
+import com.kamlesh.britishtime.service.TimeSpokenFormatter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
- * Demonstrates bean creation for locale-based formatters. For the exercise, 'en-GB' returns BritishTimeFormatter.
+ * Configuration for time formatters.
+ * Uses Chain of Responsibility pattern to handle different time formatting rules.
  */
 @Configuration
 public class FormatterConfiguration {
@@ -17,6 +18,7 @@ public class FormatterConfiguration {
 
     @Bean
     public TimeSpokenFormatter timeSpokenFormatter() {
-        return TimeFormatterFactory.defaultFormatter();
+        // Use the new chained formatter with specialized formatters
+        return new ChainedBritishTimeFormatterImpl();
     }
 }

@@ -1,4 +1,4 @@
-package com.kamlesh.britishtime.service.formatter;
+package com.kamlesh.britishtime.service;
 
 import java.time.LocalTime;
 

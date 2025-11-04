@@ -3,7 +3,7 @@ package com.kamlesh.britishtime.service.impl;
 import com.kamlesh.britishtime.dtos.SpokenTimeResponse;
 import com.kamlesh.britishtime.exception.InvalidTimeFormatException;
 import com.kamlesh.britishtime.service.TimeService;
-import com.kamlesh.britishtime.service.formatter.TimeSpokenFormatter;
+import com.kamlesh.britishtime.service.TimeSpokenFormatter;
 import com.kamlesh.britishtime.utility.TimeParser;
 import org.springframework.stereotype.Service;
 import java.time.LocalTime;

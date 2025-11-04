@@ -1,4 +1,4 @@
-package com.kamlesh.britishtime.service.formatter;
+package com.kamlesh.britishtime.utility;
 
 import java.util.HashMap;
 import java.util.Map;
